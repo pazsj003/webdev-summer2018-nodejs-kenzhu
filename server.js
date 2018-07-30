@@ -1,11 +1,12 @@
-var express = require('express')
+var express = require('express');
 var bodyParser = require('body-parser');
+
 const mongoose = require('mongoose');
+var app = express();
 mongoose.connect('mongodb://heroku_6x2bzxpk:s3j09e1a3f541ieia43n6rdatj@ds259711.mlab.com:59711/heroku_6x2bzxpk');
 // mongoose.connect('mongodb://localhost/cs5610-summerfull-mongo');
 
 
-var app = express()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -77,4 +78,5 @@ userService(app);
 require('./services/section.service.server')(app);
 // require('./services/quiz.service.server')(app);
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
+
